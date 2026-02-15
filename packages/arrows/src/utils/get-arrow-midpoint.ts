@@ -1,12 +1,13 @@
 import { getArrow } from 'perfect-arrows';
 import type { Store } from '@annotorious/annotorious';
-import type { AnnotatorInstanceAnnotation, ArrowAnnotation, Point } from '@/types';
+import type { AnnotatorInstanceAnnotation, ArrowAnnotation, ArrowStyleOptions, Point } from '@/types';
 import { getAnchorPoint } from './get-anchor-point';
 
 export const getArrowMidpoint = (
   store: Store<AnnotatorInstanceAnnotation>, 
   arrow: ArrowAnnotation, 
-  viewportScale = 1
+  viewportScale = 1,
+  arrowStyle?: ArrowStyleOptions
 ): Point => {
   const { start, end } = arrow.target.selector;
 
@@ -19,7 +20,8 @@ export const getArrowMidpoint = (
   const [sx, sy, cx, cy, ex, ey] = getArrow(x0, y0, x1, y1, {
       stretch: 0.25,
       stretchMax: Infinity,
-      padEnd: 12 / viewportScale
+      padEnd: 12 / viewportScale,
+      ...arrowStyle
     });
   
   const t = 0.5;

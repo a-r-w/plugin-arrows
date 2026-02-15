@@ -141,6 +141,7 @@ export const ArrowsLayer = (props: ArrowsLayerProps) => {
         {mode() === 'draw' && (
           <ArrowTool
             addEventListener={props.addEventListener(svgRef)}
+            arrowStyle={props.options.arrowStyle}
             hovered={hoveredImageAnnotation()}
             state={props.state}
             transform={props.elementToImage(svgRef)} 
@@ -157,6 +158,7 @@ export const ArrowsLayer = (props: ArrowsLayerProps) => {
                 start={arrow.target.selector.start} 
                 end={arrow.target.selector.end} 
                 viewportScale={props.scale} 
+                arrowStyle={props.options.arrowStyle}
                 onClick={evt => onClickedArrow(arrow, evt)} 
                 onHover={hovered => hovered ? props.onHover(arrow) : props.onHover()} />
             </Show>
@@ -167,6 +169,7 @@ export const ArrowsLayer = (props: ArrowsLayerProps) => {
           {arrow => (
             <ArrowEditor 
               arrow={arrow()} 
+              arrowStyle={props.options.arrowStyle}
               state={props.state}
               transform={props.elementToImage(svgRef)} 
               viewportScale={props.scale} />

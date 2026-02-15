@@ -1,11 +1,13 @@
 import { getArrow } from 'perfect-arrows';
 import { createEffect, createMemo, createSignal } from 'solid-js';
-import { ArrowAnnotation, ArrowAnchor, isArrowAnchor, Point, AnnotatorInstanceState } from '@/types';
+import { ArrowAnnotation, ArrowAnchor, ArrowStyleOptions, isArrowAnchor, Point, AnnotatorInstanceState } from '@/types';
 import { useAnchorPoint } from '@/hooks';
 
 interface ArrowEditorProps {
 
   arrow: ArrowAnnotation;
+
+  arrowStyle?: ArrowStyleOptions;
 
   state: AnnotatorInstanceState;
 
@@ -44,7 +46,8 @@ export const ArrowEditor = (props: ArrowEditorProps) => {
     return getArrow(x0, y0, x1, y1, {
       stretch: 0.25,
       stretchMax: Infinity,
-      padEnd: 12 / (props.viewportScale || 1) 
+      padEnd: 12 / (props.viewportScale || 1),
+      ...props.arrowStyle
     });
   });
 

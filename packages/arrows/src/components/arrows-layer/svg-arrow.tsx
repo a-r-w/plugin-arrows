@@ -2,7 +2,7 @@ import { createMemo, Show } from 'solid-js';
 import { getArrow } from 'perfect-arrows';
 import { clsx } from 'clsx';
 import { Point } from 'dist/types';
-import { AnnotatorInstanceState, ArrowAnchor } from '@/types';
+import { AnnotatorInstanceState, ArrowAnchor, ArrowStyleOptions } from '@/types';
 import { useAnchorPoint } from '@/hooks/use-anchor-point';
 
 interface SvgArrowProps {
@@ -12,6 +12,8 @@ interface SvgArrowProps {
   start: Point | ArrowAnchor;
 
   end: Point | ArrowAnchor;
+
+  arrowStyle?: ArrowStyleOptions;
 
   class?: string;
 
@@ -41,7 +43,8 @@ export const SvgArrow = (props: SvgArrowProps) => {
     return getArrow(x0, y0, x1, y1, {
       stretch: 0.25,
       stretchMax: Infinity,
-      padEnd: 12 / (props.viewportScale || 1) 
+      padEnd: 12 / (props.viewportScale || 1),
+      ...props.arrowStyle
     });
   });
 

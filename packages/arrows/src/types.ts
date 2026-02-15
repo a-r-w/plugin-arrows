@@ -39,11 +39,24 @@ export type AnnotatorInstanceState = ImageAnnotatorState<AnnotatorInstanceAnnota
 
 export interface ArrowsPluginOptions {
 
+  arrowStyle?: ArrowStyleOptions;
+
   showArrows?: ArrowsVisibility;
 
 }
 
 export type ArrowsVisibility = 'ALWAYS' | 'HOVER_ONLY' | 'SELECTED_ONLY' | 'HOVER_OR_SELECT';
+
+export interface ArrowStyleOptions {
+  bow?: number;
+  stretch?: number;
+  stretchMin?: number;
+  stretchMax?: number;
+  padStart?: number;
+  padEnd?: number;
+  flip?: boolean;
+  straights?: boolean;
+}
 
 export interface ArrowsPluginInstance {
 
